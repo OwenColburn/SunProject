@@ -1,0 +1,25 @@
+(*Mathematica code for use in the Raspberry Pi SunProject*)
+(*Code written by Owen Colburn, 2024*)
+
+(*Collect data for the day, using GeoPosition and DateObject so there's no need for an internet connection. Data is collected for 15 minute intervals.*)
+todaysdata = Table[SunPosition[GeoPosition[{47.12, -88.15}], DateObject[{DateValue["Year"],DateValue["Month"],DateValue["Day"],0,0+i}]],{i,0,24*60,15}]
+
+(*Compiling todaysdata into two columns, rather than a list of lists.*)
+results = {};
+For[i = 1, i <= Length[todaysdata], i++,
+  For[j = 1, j<3, j++,
+    AppendTo[results, QuantityMagnitude[todaysdata[[i]][[j]]
+  ]
+]
+numRows = Ceiling[Length[results]/2];
+table = Table[
+  If[2*i-1<=Length[results], {results[[2*i-1]], If[2*i <= Length[results], results[[2*i]], ""]},{"",""}
+  ],
+  {i, 1, numRows}
+];
+table//TableForm
+
+(*Exporting the transformed data into a specified folder using specified sheet name*)
+folderName = "/sunProject"; (*Make sure that this is the same as the folder the file is stored in*)
+sheetName = "/sunData.ods"; (*Name of the sheet to which the table will be exported. Must be a *.ods file*)
+Export[FileNameJoin[Directory[], folderName, sheetName], table]

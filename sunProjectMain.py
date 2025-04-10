@@ -41,7 +41,7 @@ def main():
   # Set the pin factory to PiGPIO
   Device.pin_factory = PiGPIOFactory()
 
-  # Initialize the Servo on pin 17. Notice not being initialized on GPIO 11
+  # Initialize the Servo on GPIO 17. Notice not being initialized on pin 11
   servo = Servo(17, min_pulse_width=0.5/1000, max_pulse_width=2.25/1000)  # values of min and max pulse width were experimentally found to give best results. Might change based on the servo used
 
   # Calculate the number of minutes passed since midnight

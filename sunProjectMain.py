@@ -10,7 +10,7 @@ from gpiozero.pins.pigpio import PiGPIOFactory
 from time import sleep
 
 MATHEMATICA_FILE_PATH = "/PATH/TO/sunCode-1.nb"  # Mathematica file location. CHANGE WITH CORRECT FILE PATH
-SUN_DATA_FILE_PATH = "/PATH/TO/sunData.ods"      # Sun data sheet file location. CHANGE WITH CORRECT FILE PATH
+SUN_DATA_FILE_PATH = "/PATH/TO/sunData.xlsx"      # Sun data sheet file location. CHANGE WITH CORRECT FILE PATH
 
 def action(row_number, sun_data, mylcd, servo):
   mylcd.lcd_display_string("Data collected! ",1,0)

@@ -2,7 +2,7 @@
 (*Code written by Owen Colburn, 2024*)
 
 (*Collect data for the day, using GeoPosition and DateObject so there's no need for an internet connection. Data is collected for 15 minute intervals.*)
-todaysdata = Table[SunPosition[GeoPosition[{47.12, -88.15}], DateObject[{DateValue["Year"],DateValue["Month"],DateValue["Day"],0,0+i}]],{i,0,24*60,15}]
+todaysdata = Table[SunPosition[GeoPosition[{47.12, -88.15}], DateObject[{DateValue["Year"],DateValue["Month"],DateValue["Day"],0,0+i}]],{i,0,24*60,15}];
 
 (*Compiling todaysdata into two columns, rather than a list of lists.*)
 results = {};
@@ -17,9 +17,8 @@ table = Table[
   ],
   {i, 1, numRows}
 ];
-table//TableForm
 
 (*Exporting the transformed data into a specified folder using specified sheet name*)
 folderName = "/sunProject"; (*Make sure that this is the same as the folder the file is stored in*)
-sheetName = "/sunData.ods"; (*Name of the sheet to which the table will be exported. Must be a *.ods file*)
-Export[FileNameJoin[Directory[], folderName, sheetName], table]
+sheetName = "/sunData.xlsx"; (*Name of the sheet to which the table will be exported. Must be a *.ods file*)
+Export[FileNameJoin[Directory[], folderName, sheetName], table, "XLSX"];
